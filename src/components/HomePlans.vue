@@ -19,6 +19,7 @@
               </v-container>
             </v-img>
           </v-responsive>
+
           <v-card-text>
             <div>
               <h3 class="headline mb-0">Keto</h3>
@@ -29,6 +30,7 @@
               </div>
             </div>
           </v-card-text>
+
           <v-card-actions v-if="['menu'].includes($route.name)">
             <v-btn outline block color="green" @click="showRecipes('keto')"
               >Select This Plan</v-btn
@@ -36,6 +38,7 @@
           </v-card-actions>
         </v-card>
       </v-flex>
+
       <v-flex xs12 sm12 md4>
         <v-card>
           <v-responsive>
@@ -49,6 +52,7 @@
               </v-container>
             </v-img>
           </v-responsive>
+
           <v-card-text>
             <div>
               <h3 class="headline mb-0">Paleo</h3>
@@ -59,6 +63,7 @@
               </div>
             </div>
           </v-card-text>
+
           <v-card-actions v-if="['menu'].includes($route.name)">
             <v-btn outline block color="green" @click="showRecipes('paleo')"
               >Select This Plan</v-btn
@@ -66,6 +71,7 @@
           </v-card-actions>
         </v-card>
       </v-flex>
+
       <v-flex xs12 sm12 md4>
         <v-card>
           <v-responsive>
@@ -79,6 +85,7 @@
               </v-container>
             </v-img>
           </v-responsive>
+
           <v-card-text>
             <div>
               <h3 class="headline mb-0">Vegan</h3>
@@ -89,6 +96,7 @@
               </div>
             </div>
           </v-card-text>
+
           <v-card-actions v-if="['menu'].includes($route.name)">
             <v-btn outline block color="green" @click="showRecipes('vegan')"
               >Select This Plan</v-btn
@@ -99,3 +107,16 @@
     </v-layout>
   </v-container>
 </template>
+
+<script>
+export default {
+  name: 'HomePlans',
+  methods: {
+    showRecipes(plan) {
+      this.$store.dispatch('getRecipes', plan);
+    }
+  }
+};
+</script>
+
+<style scoped></style>
