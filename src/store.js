@@ -13,6 +13,11 @@ export default new Vuex.Store({
     user: null,
     isAuthenticated: false
   },
+  getters: {
+    isAuthenticated(state) {
+      return state.user !== null && state.user !== undefined;
+    }
+  },
   mutations: {
     setRecipes(state, payload) {
       state.recipes = payload;
@@ -64,6 +69,21 @@ export default new Vuex.Store({
           commit('setUser', user);
           commit('setIsAuthenticated', true);
           router.push('/about');
+        })
+        .catch(() => {
+          commit('setUser', null);
+          commit('setIsAuthenticated', false);
+          router.push('/');
+        });
+    },
+    userSignOut({ commit }) {
+      firebase
+        .auth()
+        .signOut()
+        .then(() => {
+          commit('setUser', null);
+          commit('setIsAuthenticated', false);
+          router.push('/');
         })
         .catch(() => {
           commit('setUser', null);
